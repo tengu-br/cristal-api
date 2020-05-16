@@ -1,6 +1,7 @@
 # cristal-api
 
 Pre-requisitos:
+* npm
 * node.js
 * mongodb
 * algum visualizador de mongodb (ex: mongodb compass)
