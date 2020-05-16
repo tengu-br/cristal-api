@@ -33,7 +33,11 @@ router.post('/entry', async (req, res) => {
 router.get('/entry', async (req, res) => {
     try {
         const entry = await Entry.find({})
-        res.send(entry)
+        hue = entry.map(({nome,local,entrada = `-`,saida= `-`}) => {
+            return {nome,local,entrada,saida}
+        })
+
+        res.send(hue)
 
     } catch (e) {
         res.status(500).send()
@@ -42,9 +46,8 @@ router.get('/entry', async (req, res) => {
 
 router.get('/visitante', async (req, res) => {
     try {
-        const entry = await Entry.find({nome:req.body.nome.trim()})
+        const entry = await Entry.find({ nome: req.body.nome.trim() })
         res.send(entry)
-
     } catch (e) {
         res.status(500).send()
     }
@@ -52,7 +55,7 @@ router.get('/visitante', async (req, res) => {
 
 router.get('/visitantes/:nome', async (req, res) => {
     try {
-        const entry = await Entry.find({nome:req.params.nome})
+        const entry = await Entry.find({ nome: req.params.nome })
         res.send(entry)
 
     } catch (e) {
@@ -62,7 +65,7 @@ router.get('/visitantes/:nome', async (req, res) => {
 
 router.get('/estabelecimento', async (req, res) => {
     try {
-        const entry = await Entry.find({local:req.body.local.trim()})
+        const entry = await Entry.find({ local: req.body.local.trim() })
         res.send(entry)
 
     } catch (e) {
