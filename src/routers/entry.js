@@ -22,8 +22,8 @@ router.post('/entry', async (req, res) => {
     // const entry = new Entry(ready)
     try {
         await entry.save()
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        // res.header("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Headers", "X-Requested-With");
         res.status(201).send({ entry })
     } catch (e) {
         res.status(400).send(e)
