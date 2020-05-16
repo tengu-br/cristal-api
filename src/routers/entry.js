@@ -5,21 +5,21 @@ const router = new express.Router()
 
 router.post('/entry', async (req, res) => {
     //limpar dados vindo do wordpress
-    const entry = new Entry(req.body)
+    // const entry = new Entry(req.body)
 
-    // const nome
-    // const local
-    // const entrada
-    // const saida
+    const nome = req.body.outrasInfo.first_name + " " + req.body.outrasInfo.last_name
+    const local = req.body.local
+    const entrada = req.body.dataInicio
+    const saida = req.body.dataFim
 
-    // const ready = {
-    //     nome,
-    //     local,
-    //     entrada,
-    //     saida
-    // }
+    const ready = {
+        nome,
+        local,
+        entrada,
+        saida
+    }
 
-    // const entry = new Entry(ready)
+    const entry = new Entry(ready)
     try {
         await entry.save()
         // res.header("Access-Control-Allow-Origin", "*");
