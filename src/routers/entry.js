@@ -50,6 +50,16 @@ router.get('/visitante', async (req, res) => {
     }
 })
 
+router.get('/visitantes/:nome', async (req, res) => {
+    try {
+        const entry = await Entry.find({nome:req.params.nome})
+        res.send(entry)
+
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
 router.get('/estabelecimento', async (req, res) => {
     try {
         const entry = await Entry.find({local:req.body.local.trim()})
