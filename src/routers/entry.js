@@ -7,7 +7,7 @@ router.post('/entry', async (req, res) => {
     //limpar dados vindo do wordpress
     // const entry = new Entry(req.body)
 
-    const nome = req.body.outrasInfo.first_name + " " + req.body.outrasInfo.last_name
+    const nome = (req.body.outrasInfo.first_name + " " + req.body.outrasInfo.last_name).trim()
     const local = req.body.local
     const entrada = req.body.dataInicio
     const saida = req.body.dataFim
@@ -33,6 +33,26 @@ router.post('/entry', async (req, res) => {
 router.get('/entry', async (req, res) => {
     try {
         const entry = await Entry.find({})
+        res.send(entry)
+
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+router.get('/visitante', async (req, res) => {
+    try {
+        const entry = await Entry.find({nome:req.body.nome.trim()})
+        res.send(entry)
+
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+router.get('/estabelecimento', async (req, res) => {
+    try {
+        const entry = await Entry.find({local:req.body.local.trim()})
         res.send(entry)
 
     } catch (e) {
