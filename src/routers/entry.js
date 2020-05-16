@@ -38,7 +38,6 @@ router.get('/entry', async (req, res) => {
         })
 
         res.send(hue)
-
     } catch (e) {
         res.status(500).send()
     }
