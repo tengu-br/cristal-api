@@ -8,12 +8,14 @@ router.post('/entry', async (req, res) => {
     // const entry = new Entry(req.body)
 
     const nome = (req.body.outrasInfo.first_name + " " + req.body.outrasInfo.last_name).trim()
+    const email = req.body.outrasInfo.email.trim()
     const local = req.body.local
     const entrada = req.body.dataInicio
     const saida = req.body.dataFim
 
     const ready = {
         nome,
+        email,
         local,
         entrada,
         saida
@@ -33,8 +35,8 @@ router.post('/entry', async (req, res) => {
 router.get('/entry', async (req, res) => {
     try {
         const entry = await Entry.find({})
-        hue = entry.map(({nome,local,entrada = `-`,saida= `-`}) => {
-            return {nome,local,entrada,saida}
+        hue = entry.map(({ nome, local, email = `-`, entrada = `-`, saida = `-` }) => {
+            return { nome, local, email, entrada, saida }
         })
 
         res.send(hue)

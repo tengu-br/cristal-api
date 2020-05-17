@@ -13,6 +13,12 @@ const entrySchema = new mongoose.Schema({
         trim: true
 
     },
+    email: {
+        type: String,
+        required: false,
+        trim: true
+
+    },
     entrada: {
         type: Date,
         required: false,
